@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Insert title here</title>
+
+<meta charset="UTF-8">
+
+<link href="bootstrap.css" rel="stylesheet" />
+<script src="jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+
+<div ng-controller="myCtrl">
+
+	<table class="table table-hover">
+		<tr>
+			<td>Nombre</td>
+			<td>Apellido Paterno</td>
+			<td>Apellido Materno</td>
+			<td>Accion</td>
+		</tr>
+		<tr ng-repeat="dato in datos">
+			<td>{{ dato.nombre }}</td>
+			<td>{{ dato.apellidoPaterno }}</td>
+			<td>{{ dato.apellidoMaterno }}</td>
+			<td>
+				<button class="btn btn-default" ng-click="readById(dato.id)" data-toggle="modal" data-target="#myModal">Editar</button>
+				<button class="btn btn-primary" ng-click="borrar(dato.nombre)">Borrar</button>
+			</td>
+		</tr>
+	</table>
+	
+	<div class="row pull-right">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearModal">Crear</button>
+	</div>
+	
+	
+	<!-- Modal -->
+  	<div id="myModal" class="modal fade" role="dialog">
+	  	<div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+		    <form>
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Modal Header</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="form-group">
+		        	<label for="nombre">Nombre</label>
+		        	<input type="hidden" name="dato.id" />
+		        	<input type="text" name="nombre" id="nombre" ng-model="dato.nombre" />
+		        </div>
+		        <div class="form-group">
+		        	<label for="apellidoPaterno">Apellido Paterno</label>
+		        	<input type="text" name="apellidoPaterno" id="apellidoPaterno" ng-model="dato.apellidoPaterno"/>
+		        </div>
+		        <div class="form-group">
+		        	<label for="apellidoMaterno">Apellido Materno</label>
+		        	<input type="text" name="apellidoMaterno" id="apellidoMaterno" ng-model="dato.apellidoMaterno"/>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" class="btn btn-primary" data-dimisss="modal" ng-click="update(dato)">Guardar</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </form>
+	    </div>
+  	</div>
+  	</div>
+  	
+  	<!-- Modal -->
+  	<div id="crearModal" class="modal fade" role="dialog">
+	  	<div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+		    <form>
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Modal Header</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="form-group">
+		        	<label for="nombre">Nombre</label>
+		        	<input type="text" name="nombre" id="nombre" ng-model="dato.nombre" />
+		        </div>
+		        <div class="form-group">
+		        	<label for="apellidoPaterno">Apellido Paterno</label>
+		        	<input type="text" name="apellidoPaterno" id="apellidoPaterno" ng-model="dato.apellidoPaterno"/>
+		        </div>
+		        <div class="form-group">
+		        	<label for="apellidoMaterno">Apellido Materno</label>
+		        	<input type="text" name="apellidoMaterno" id="apellidoMaterno" ng-model="dato.apellidoMaterno"/>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" class="btn btn-primary" data-dimisss="modal" ng-click="create(dato)">Crear</button>
+		      </div>
+		    </form>
+	    </div>
+  	</div>	
+	
+	{{ datos | json }}
+	{{ dato | json }}
+	
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
