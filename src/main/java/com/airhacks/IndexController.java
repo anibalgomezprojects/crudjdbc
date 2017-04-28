@@ -8,6 +8,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -84,8 +85,9 @@ public class IndexController<T> extends MySQL {
 		
 	}
 	
-	@POST
-	public String deletePost(String nombre) {
+	@DELETE
+	@Path("{nombre}")
+	public String deletePost(@PathParam("nombre") String nombre) {
 		delete(nombre);
 		return "OK";
 	}

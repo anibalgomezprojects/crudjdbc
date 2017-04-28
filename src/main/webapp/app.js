@@ -29,7 +29,8 @@ app.controller("myCtrl", function($scope, $http) {
 	}
 	
 	$scope.borrar = function(nombre) {
-		$http.post('/crudjdbc/resources/rest/', nombre)
+		console.log(nombre);
+		$http.delete('/crudjdbc/resources/rest/' + nombre)
 		.then(function(response) {
 			$scope.status = 'OK';
 		});
